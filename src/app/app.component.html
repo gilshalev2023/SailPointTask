@@ -1,0 +1,8 @@
+<div class="row">
+  <h2 style="text-align:center; background-color: orange;">Your Selected City is: {{ selectedCity }}</h2>
+  <div style="margin-top: 5%">
+    <app-autocomplete autocompleteHeader="Search City:" autocompletePlaceholder="Search city by name" [pageSize]=10
+      (selectedItemEvent)="setSelectedCity($event)">
+    </app-autocomplete>
+  </div>
+</div>

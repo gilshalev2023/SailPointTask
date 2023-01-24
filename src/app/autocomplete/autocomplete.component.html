@@ -1,0 +1,22 @@
+<div class="autocomplete-container">
+  <div class="autocomplete-label">
+    <label for="search">{{ autocompleteHeader }}</label>
+  </div>
+
+  <input id="search" class="autocomplete-input" #searchInput placeholder="{{ autocompletePlaceholder }}" type="text"
+    autocomplete="off" (keyup)="search(searchInput.value)" />
+  <div class="autocomplete-list" *ngIf="foundItems && foundItems.length > 0 && !isSearching" [hidden]="!showOptions">
+    <div class="autocomplete-list-item" *ngFor="let item of foundItems" tappable (click)="selectOption(item.name)">
+      {{ item.name }}
+    </div>
+    <div *ngIf="foundItems.length >= pageSize && showMoreResults" (click)="bringMoreResults(searchInput.value)"
+      style="float: right">
+      <button class="autocomplete-more-items">More results...</button>
+    </div>
+  </div>
+
+  <div class="autocomplete-label" *ngIf="foundItems && foundItems.length <= 0 && !isSearching" [hidden]="!showOptions">
+    No Item found
+  </div>
+  <div class="autocomplete-label" [hidden]="!isSearching">Searching items...</div>
+</div>
